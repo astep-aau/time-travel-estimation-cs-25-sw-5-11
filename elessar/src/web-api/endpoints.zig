@@ -37,8 +37,8 @@ fn handleJourneyPost(r: zap.Request, requestAllocator: std.mem.Allocator) !types
     std.debug.print("End: ({d}, {d}) -> node {}\n", .{ parsedBody.end_coordinate.lat, parsedBody.end_coordinate.lon, endNodeId });
 
     // Convert time to CSV offset (each row = 5 minutes, 12 rows per hour)
-    // Must be at least sequence_length - 1 (29) for the model
-    const min_offset: usize = 29;
+    // Must be at least sequence_length - 1 (20) for the model
+    const min_offset: usize = 20;
     const time_offset = @as(usize, parsedBody.time.hour) * 12 + @as(usize, parsedBody.time.minute) / 5;
     const csv_offset = @max(time_offset, min_offset);
 
